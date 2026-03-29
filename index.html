@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vita'é Plena — Human Regulation Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F7F2EA;--cream-dark:#EDE7D9;--cream-mid:#FAF7F2;
+  --green-deep:#1C3D2E;--green-mid:#2E6044;--green-light:#4A8C5C;
+  --green-pale:#C8DDD0;--green-mist:#EAF2ED;
+  --gold:#B5924C;--gold-light:#D4AF72;--gold-pale:#F0E4C8;
+  --text-dark:#1A2218;--text-mid:#3D4F3A;--text-soft:#6B7D67;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--text-dark);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 5%;
+  background:rgba(247,242,234,.95);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(28,61,46,.07);
+  transition:box-shadow .3s;
+}
+nav.scrolled{box-shadow:0 2px 30px rgba(28,61,46,.09)}
+.nav-logo-wrap{display:flex;align-items:center;gap:.8rem}
+.nav-brand{display:flex;flex-direction:column;line-height:1.15}
+.nav-brand-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--green-deep);letter-spacing:.02em}
+.nav-brand-sub{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{font-size:.75rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--text-mid);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--green-deep)}
+.nav-cta{background:var(--green-deep)!important;color:var(--cream)!important;padding:.6rem 1.4rem;border-radius:2px;font-weight:500!important;transition:background .2s!important}
+.nav-cta:hover{background:var(--green-mid)!important}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:9rem 5% 6rem 8%}
+.hero-eyebrow{
+  font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:1.6rem;
+  opacity:0;animation:fadeUp .8s ease .2s forwards;
+}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3rem,5vw,5rem);font-weight:700;line-height:1.04;
+  color:var(--green-deep);margin-bottom:1.4rem;
+  opacity:0;animation:fadeUp .9s ease .35s forwards;
+}
+.hero-subtitle{
+  font-size:1.05rem;font-weight:300;line-height:1.78;
+  color:var(--text-mid);max-width:480px;margin-bottom:2.6rem;
+  opacity:0;animation:fadeUp .9s ease .55s forwards;
+}
+.hero-actions{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  opacity:0;animation:fadeUp .9s ease .75s forwards;
+}
+.btn-primary{
+  background:var(--green-deep);color:var(--cream);
+  padding:1rem 2.2rem;border:none;border-radius:2px;
+  font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;cursor:pointer;
+  text-decoration:none;display:inline-block;transition:background .25s,transform .2s;
+}
+.btn-primary:hover{background:var(--green-mid);transform:translateY(-2px)}
+.btn-secondary{
+  background:transparent;color:var(--green-deep);
+  padding:1rem 2.2rem;border:1.5px solid var(--green-deep);border-radius:2px;
+  font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:400;
+  letter-spacing:.08em;text-transform:uppercase;cursor:pointer;
+  text-decoration:none;display:inline-block;transition:background .25s,color .25s,transform .2s;
+}
+.btn-secondary:hover{background:var(--green-deep);color:var(--cream);transform:translateY(-2px)}
+
+/* micro prueba social */
+.hero-proof{
+  display:flex;gap:2.5rem;margin-top:3rem;
+  padding-top:2rem;border-top:1px solid var(--green-pale);
+  opacity:0;animation:fadeUp .9s ease .95s forwards;
+}
+.proof-item{display:flex;flex-direction:column;gap:.12rem}
+.proof-num{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--green-deep);line-height:1}
+.proof-lbl{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-soft)}
+
+/* hero derecho */
+.hero-right{position:relative;background:var(--green-deep);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 65% 30%,rgba(74,140,92,.18) 0%,transparent 55%),radial-gradient(ellipse at 35% 70%,rgba(181,146,76,.10) 0%,transparent 50%)}
+.hero-right-content{position:relative;z-index:2;text-align:center;padding:3rem}
+.hero-right-content h3{font-family:'Cormorant Garamond',serif;font-size:.92rem;font-weight:300;color:var(--green-pale);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.6rem}
+.hero-right-content p{font-size:.76rem;line-height:1.75;color:rgba(200,221,208,.6);max-width:250px;margin:0 auto}
+.hrv-wave{margin:2rem auto 0;width:76%}
+.hrv-wave svg{width:100%;opacity:.28}
+.pulse-dot{width:9px;height:9px;background:var(--gold);border-radius:50%;margin:1.4rem auto 0;animation:pulseDot 2.2s ease-in-out infinite}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(181,146,76,.55)}50%{box-shadow:0 0 0 13px rgba(181,146,76,0)}}
+
+/* ── SHARED ── */
+section{position:relative}
+.section-label{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;display:block}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3.2rem);font-weight:300;line-height:1.14;color:var(--green-deep);margin-bottom:1.2rem}
+.section-body{font-size:.95rem;line-height:1.82;color:var(--text-mid)}
+
+/* ── QUÉ ES ── */
+#que-es{padding:8rem 8%;background:var(--cream-mid)}
+.que-es-inner{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;margin-top:3.5rem}
+.pillars{display:flex;flex-direction:column}
+.pillar{display:flex;gap:1.4rem;padding:1.8rem 0;border-bottom:1px solid var(--green-pale);opacity:0;transform:translateX(20px);transition:opacity .6s ease,transform .6s ease}
+.pillar.visible{opacity:1;transform:translateX(0)}
+.pillar:first-child{padding-top:0}
+.pillar-icon{width:44px;height:44px;flex-shrink:0;background:var(--green-mist);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.pillar-icon svg{width:20px;height:20px;stroke:var(--green-mid);fill:none;stroke-width:1.5;stroke-linecap:round}
+.pillar h4{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--green-deep);margin-bottom:.35rem}
+.pillar p{font-size:.85rem;line-height:1.72;color:var(--text-soft)}
+.manifesto-box{background:var(--green-deep);padding:3.5rem;border-radius:3px;position:relative;overflow:hidden;opacity:0;transform:translateY(25px);transition:opacity .8s ease,transform .8s ease}
+.manifesto-box.visible{opacity:1;transform:translateY(0)}
+.manifesto-box::before{content:'"';position:absolute;top:-2rem;left:1.5rem;font-family:'Cormorant Garamond',serif;font-size:14rem;color:rgba(200,221,208,.055);line-height:1;pointer-events:none}
+.manifesto-box blockquote{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;font-style:italic;line-height:1.58;color:var(--cream);margin-bottom:1.8rem;position:relative;z-index:1}
+.manifesto-box .attr{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);position:relative;z-index:1}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.8rem;position:relative;z-index:1}
+.tag{background:rgba(200,221,208,.1);border:1px solid rgba(200,221,208,.2);color:var(--green-pale);padding:.28rem .82rem;border-radius:100px;font-size:.7rem;letter-spacing:.04em}
+
+/* ── RESULTADOS ── */
+#resultados{padding:8rem 8%;background:var(--green-deep)}
+#resultados .section-label{color:var(--gold-light)}
+#resultados .section-title{color:var(--cream)}
+#resultados .section-body{color:rgba(200,221,208,.8);margin-bottom:3.5rem}
+.results-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(200,221,208,.1);border:1px solid rgba(200,221,208,.1);border-radius:3px;overflow:hidden;margin-bottom:4rem}
+.result-card{background:rgba(255,255,255,.03);padding:2rem 1.6rem;opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease,background .25s}
+.result-card.visible{opacity:1;transform:translateY(0)}
+.result-card:hover{background:rgba(255,255,255,.07)}
+.result-arrow{font-family:'Space Mono',monospace;font-size:1.4rem;font-weight:700;margin-bottom:.6rem;display:block}
+.result-arrow.up{color:#6DAF87}
+.result-arrow.down{color:var(--gold-light)}
+.result-card h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--cream);margin-bottom:.4rem}
+.result-card p{font-size:.8rem;line-height:1.65;color:rgba(200,221,208,.7)}
+.result-stat{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--gold-light);margin-top:.6rem;display:block}
+
+/* caso clínico */
+.caso-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(200,221,208,.12);border-radius:3px;overflow:hidden}
+.caso-antes,.caso-despues{padding:2.5rem}
+.caso-antes{background:rgba(255,255,255,.03);border-right:1px solid rgba(200,221,208,.1)}
+.caso-despues{background:rgba(74,140,92,.08)}
+.caso-label{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1rem;display:block}
+.caso-antes .caso-label{color:rgba(200,221,208,.5)}
+.caso-despues .caso-label{color:#6DAF87}
+.caso-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--cream);margin-bottom:1rem}
+.caso-list{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.caso-list li{font-size:.82rem;line-height:1.5;color:rgba(200,221,208,.75);display:flex;gap:.6rem;align-items:flex-start}
+.caso-list li::before{content:'—';color:rgba(200,221,208,.3);flex-shrink:0}
+.caso-despues .caso-list li::before{content:'↑';color:#6DAF87;flex-shrink:0}
+
+/* ── VRS ── */
+#vrs{padding:8rem 8%;background:var(--cream-dark)}
+.vrs-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:4rem}
+.vrs-scale{display:flex;flex-direction:column;gap:.8rem}
+.scale-bar{border-radius:3px;overflow:hidden;border:1px solid var(--green-pale)}
+.scale-item{display:flex;align-items:center;gap:1.5rem;padding:1.4rem 1.8rem;border-bottom:1px solid var(--green-pale);transition:background .25s;cursor:default}
+.scale-item:last-child{border-bottom:none}
+.scale-item:hover{background:var(--green-mist)}
+.scale-range{font-family:'Space Mono',monospace;font-size:.75rem;font-weight:700;min-width:60px;color:var(--text-soft)}
+.scale-indicator{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.scale-item.low .scale-indicator{background:#C85D3A}
+.scale-item.mid .scale-indicator{background:var(--gold)}
+.scale-item.high .scale-indicator{background:var(--green-light)}
+.scale-item.low .scale-range{color:#C85D3A}
+.scale-item.mid .scale-range{color:var(--gold)}
+.scale-item.high .scale-range{color:var(--green-light)}
+.scale-content h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--green-deep);margin-bottom:.2rem}
+.scale-content p{font-size:.8rem;color:var(--text-soft);line-height:1.5}
+.vrs-frase{
+  margin-top:2rem;padding:1.8rem 2rem;
+  border-left:3px solid var(--green-mid);
+  background:var(--green-mist);border-radius:0 3px 3px 0;
+}
+.vrs-frase p{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--green-deep);line-height:1.6}
+.dims-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--green-pale);border:1px solid var(--green-pale);border-radius:3px;overflow:hidden;margin-top:4rem}
+.dim{background:var(--cream);padding:1.2rem;opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease,background .25s}
+.dim.visible{opacity:1;transform:translateY(0)}
+.dim:hover{background:var(--green-mist)}
+.dim-code{font-family:'Space Mono',monospace;font-size:.55rem;color:var(--gold);letter-spacing:.1em;margin-bottom:.3rem}
+.dim-name{font-family:'Cormorant Garamond',serif;font-size:.96rem;font-weight:600;color:var(--green-deep);line-height:1.2;margin-bottom:.2rem}
+.dim-w{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--green-light);font-weight:700}
+.dim-bar{height:2px;background:var(--green-pale);margin-top:.5rem;border-radius:1px;overflow:hidden}
+.dim-fill{height:100%;background:linear-gradient(90deg,var(--green-light),var(--gold));border-radius:1px}
+
+/* ── ECOSISTEMA ── */
+#ecosistema{padding:8rem 8%;background:var(--cream-mid)}
+.eco-intro{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end;margin-bottom:4rem}
+.eco-philosophy{background:var(--gold-pale);border-left:3px solid var(--gold);padding:2rem;border-radius:0 3px 3px 0;opacity:0;transform:translateX(20px);transition:opacity .7s ease,transform .7s ease}
+.eco-philosophy.visible{opacity:1;transform:translateX(0)}
+.eco-philosophy p{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;line-height:1.62;color:var(--green-deep)}
+.eco-philosophy cite{display:block;margin-top:.7rem;font-size:.63rem;font-style:normal;font-family:'Space Mono',monospace;letter-spacing:.1em;color:var(--gold)}
+
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--green-pale);border:1px solid var(--green-pale);border-radius:4px;overflow:hidden}
+.svc{background:var(--cream);position:relative;overflow:hidden;cursor:default;opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease;display:flex;flex-direction:column}
+.svc.visible{opacity:1;transform:translateY(0)}
+.svc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green-mid),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.svc:hover::after{transform:scaleX(1)}
+.svc-img-placeholder{width:100%;height:160px;background:linear-gradient(135deg,var(--green-mist),var(--green-pale));display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.svc-img-placeholder svg{width:32px;height:32px;stroke:var(--green-light);fill:none;stroke-width:1.2;stroke-linecap:round;opacity:.45}
+.svc-wide .svc-img-placeholder{height:180px}
+.svc-body{padding:1.6rem;display:flex;flex-direction:column;flex:1}
+.svc-cat{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;display:block}
+.svc h3{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--green-deep);margin-bottom:.3rem;line-height:1.2}
+.svc-hook{font-size:.82rem;font-style:italic;color:var(--text-soft);margin-bottom:.9rem;line-height:1.55}
+.svc-section-label{font-size:.68rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--green-mid);margin:.8rem 0 .35rem;display:block}
+.svc-list{list-style:none;display:flex;flex-direction:column;gap:.25rem;margin-bottom:.5rem}
+.svc-list li{font-size:.76rem;color:var(--text-mid);display:flex;align-items:flex-start;gap:.45rem;line-height:1.45}
+.svc-list li::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--green-light);flex-shrink:0;margin-top:.45rem}
+.svc-list.no li::before{background:#C85D3A}
+.svc-integra{margin-top:auto;padding-top:.9rem;border-top:1px solid var(--green-pale);font-size:.72rem;color:var(--text-soft)}
+.svc-integra strong{color:var(--green-mid);font-weight:500}
+.svc-wide{grid-column:span 2}
+
+/* ── HISTORIA ── */
+#historia{padding:8rem 8%;background:var(--cream)}
+.historia-inner{display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center}
+.historia-text .section-body{margin-bottom:1.5rem}
+.historia-text p+p{margin-top:1rem}
+.historia-visual{
+  position:relative;
+  opacity:0;transform:translateX(30px);
+  transition:opacity .8s ease,transform .8s ease;
+}
+.historia-visual.visible{opacity:1;transform:translateX(0)}
+.historia-card{
+  background:var(--green-deep);padding:3rem;border-radius:3px;
+  position:relative;overflow:hidden;
+}
+.historia-card::before{
+  content:'';position:absolute;
+  top:-40px;right:-40px;
+  width:180px;height:180px;
+  border-radius:50%;
+  border:1px solid rgba(200,221,208,.06);
+}
+.historia-card::after{
+  content:'';position:absolute;
+  top:-20px;right:-20px;
+  width:120px;height:120px;
+  border-radius:50%;
+  border:1px solid rgba(200,221,208,.08);
+}
+.historia-stat{display:flex;flex-direction:column;gap:2rem;position:relative;z-index:1}
+.h-stat-item{display:flex;gap:1.2rem;align-items:flex-start}
+.h-stat-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;color:var(--cream);line-height:1;flex-shrink:0;min-width:80px}
+.h-stat-text strong{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--cream);display:block;margin-bottom:.2rem}
+.h-stat-text span{font-size:.78rem;color:rgba(200,221,208,.65);line-height:1.5}
+
+/* ── CONTACTO ── */
+#contacto{padding:8rem 8%;background:var(--green-deep)}
+.contacto-hero{text-align:center;margin-bottom:5rem}
+.contacto-hero .section-label{color:var(--gold-light);display:block;text-align:center}
+.contacto-hero h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.4rem,4vw,3.8rem);font-weight:300;line-height:1.1;
+  color:var(--cream);margin-bottom:1.2rem;
+}
+.contacto-hero p{font-size:1rem;line-height:1.78;color:rgba(200,221,208,.75);max-width:540px;margin:0 auto 2.5rem}
+.contacto-hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary-inv{background:var(--gold);color:var(--green-deep);padding:1.1rem 2.5rem;border:none;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:background .25s,transform .2s}
+.btn-primary-inv:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-outline-light{background:transparent;color:var(--green-pale);padding:1.1rem 2.5rem;border:1.5px solid rgba(200,221,208,.35);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:border-color .25s,color .25s,transform .2s}
+.btn-outline-light:hover{border-color:var(--green-pale);color:var(--cream);transform:translateY(-2px)}
+
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.contact-left h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;font-style:italic;color:var(--cream);margin-bottom:2rem;line-height:1.4}
+.contact-info{display:flex;flex-direction:column;gap:.9rem}
+.ci{display:flex;align-items:center;gap:.9rem;font-size:.84rem;color:rgba(200,221,208,.8)}
+.ci a{color:rgba(200,221,208,.8);text-decoration:none;transition:color .2s}
+.ci a:hover{color:var(--cream)}
+.ci-icon{width:34px;height:34px;flex-shrink:0;background:rgba(200,221,208,.08);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.ci-icon svg{width:15px;height:15px;stroke:var(--green-pale);fill:none;stroke-width:1.5;stroke-linecap:round}
+.cform{display:flex;flex-direction:column;gap:1rem}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fg{display:flex;flex-direction:column;gap:.35rem}
+.fg label{font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(200,221,208,.5)}
+.fg input,.fg select,.fg textarea{background:rgba(255,255,255,.05);border:1px solid rgba(200,221,208,.15);border-radius:2px;padding:.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--cream);outline:none;width:100%;transition:border-color .2s,background .2s}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(200,221,208,.3)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--green-light);background:rgba(255,255,255,.08)}
+.fg select option{background:var(--green-deep);color:var(--cream)}
+.fg textarea{resize:vertical;min-height:100px}
+.fsub{background:var(--gold);color:var(--green-deep);padding:1rem 2.2rem;border:none;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;cursor:pointer;transition:background .25s,transform .2s;align-self:flex-start}
+.fsub:hover{background:var(--gold-light);transform:translateY(-2px)}
+.form-status{font-size:.8rem;margin-top:.5rem;padding:.6rem 1rem;border-radius:2px;display:none}
+.form-status.ok{background:rgba(74,140,92,.2);color:#6DAF87;display:block}
+.form-status.err{background:rgba(200,80,58,.15);color:#e07060;display:block}
+
+/* ── FOOTER ── */
+footer{background:var(--text-dark);padding:3rem 8%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
+.footer-brand{display:flex;align-items:center;gap:.8rem}
+.footer-name{font-family:'Cormorant Garamond',serif;font-size:1.12rem;font-weight:700;color:var(--cream)}
+.footer-sub{font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,.28)}
+.flinks{display:flex;gap:2rem;list-style:none}
+.flinks a{font-size:.7rem;letter-spacing:.04em;color:rgba(245,240,232,.38);text-decoration:none;transition:color .2s}
+.flinks a:hover{color:var(--cream)}
+.fcopy{font-size:.64rem;color:rgba(245,240,232,.2)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:960px){
+  #hero{grid-template-columns:1fr}.hero-right{display:none}.hero-left{padding:9rem 6% 5rem}
+  .que-es-inner,.eco-intro,.vrs-layout,.historia-inner,.contact-layout{grid-template-columns:1fr;gap:3rem}
+  .services-grid{grid-template-columns:repeat(2,1fr)}.svc-wide{grid-column:span 1}
+  .results-grid{grid-template-columns:repeat(2,1fr)}.caso-wrap{grid-template-columns:1fr}
+  .dims-grid{grid-template-columns:repeat(2,1fr)}.nav-links{display:none}
+  .caso-antes{border-right:none;border-bottom:1px solid rgba(200,221,208,.1)}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="navbar">
+  <div class="nav-logo-wrap">
+    <img src="logo.png.png" alt="Vita'é Plena" style="height:42px;width:auto">
+    <div class="nav-brand">
+      <span class="nav-brand-name">VITA'É PLENA</span>
+      <span class="nav-brand-sub">Human Regulation Lab</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#que-es">Qué es</a></li>
+    <li><a href="#ecosistema">Servicios</a></li>
+    <li><a href="#vrs">VRS Score</a></li>
+    <li><a href="#historia">Nuestra historia</a></li>
+    <li><a href="#contacto" class="nav-cta">Evaluación VRS</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-left">
+    <span class="hero-eyebrow">Human Regulation Lab · Medellín, Colombia</span>
+    <h1 class="hero-title">No estás cansado.<br>Estás desregulado.</h1>
+    <p class="hero-subtitle">
+      Tu sistema nervioso define tu energía, tu claridad mental 
+      y tu capacidad de sostener el estrés. En Vita'é Plena medimos, 
+      interpretamos y entrenamos tu regulación fisiológica con datos reales — no suposiciones.
+    </p>
+    <div class="hero-actions">
+      <a href="#contacto" class="btn-primary">Descubre tu VRS →</a>
+      <a href="#ecosistema" class="btn-secondary">Protocolos exploratorios</a>
+    </div>
+    <div class="hero-proof">
+      <div class="proof-item">
+        <span class="proof-num">+120</span>
+        <span class="proof-lbl">Personas evaluadas</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-num">+24%</span>
+        <span class="proof-lbl">Mejora promedio HRV</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-num">9</span>
+        <span class="proof-lbl">Dimensiones clínicas</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-bg-glow"></div>
+    <div class="hero-right-content">
+      <img src="logo.png.png" alt="Vita'é Plena" style="width:150px;height:auto;margin:0 auto 2rem;display:block">
+      <h3>Human Regulation Lab</h3>
+      <p>Fisiología · Psicología · Datos longitudinales</p>
+      <div class="hrv-wave">
+        <svg viewBox="0 0 300 50" fill="none">
+          <polyline points="0,25 30,25 46,8 62,42 78,16 94,34 110,25 140,25 158,4 176,46 194,25 220,25 238,12 256,38 274,25 300,25" stroke="rgba(200,221,208,0.55)" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
+      <div class="pulse-dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUÉ ES ═══ -->
+<section id="que-es">
+  <span class="section-label">El problema que resolvemos</span>
+  <h2 class="section-title">No es ansiedad.<br>Es disregulación.</h2>
+  <div class="que-es-inner">
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div>
+          <h4>Fisiología de precisión</h4>
+          <p>Medimos variabilidad de frecuencia cardíaca (HRV), el marcador objetivo del estado real de tu sistema nervioso autónomo — no lo que crees sentir, sino lo que tu cuerpo realmente registra.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div>
+          <h4>Psicología basada en evidencia</h4>
+          <p>Protocolos clínicamente validados que entrenan regulación emocional, sueño, cognición y resiliencia — integrados, no aislados. El sistema nervioso es un todo.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3zM3 9h18M9 21V9"/></svg>
+        </div>
+        <div>
+          <h4>Datos longitudinales</h4>
+          <p>Cada sesión construye tu baseline personal. El sistema aprende tu patrón y detecta anomalías antes de que se conviertan en crisis. La transformación real se mide, no se intuye.</p>
+        </div>
+      </div>
+    </div>
+    <div class="manifesto-box">
+      <blockquote>"El estrés crónico, el burnout y la fatiga cognitiva no son problemas de actitud. Son problemas de regulación del sistema nervioso — y tienen solución medible."</blockquote>
+      <span class="attr">— Misión Vita'é Plena</span>
+      <div class="tag-cloud">
+        <span class="tag">Sobrecarga informativa</span><span class="tag">Burnout</span>
+        <span class="tag">Ansiedad crónica</span><span class="tag">Fatiga cognitiva</span>
+        <span class="tag">Insomnio</span><span class="tag">Irritabilidad</span>
+        <span class="tag">Niebla mental</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RESULTADOS ═══ -->
+<section id="resultados">
+  <span class="section-label">Resultados medibles, sin percepciones</span>
+  <h2 class="section-title">Antes de hablar de bienestar,<br>hablamos de datos.</h2>
+  <p class="section-body">
+    Estos son cambios observados en personas que completan protocolos 
+    de regulación en Vita'é Plena. Números reales, no promesas.
+  </p>
+  <div class="results-grid">
+    <div class="result-card">
+      <span class="result-arrow up">↑ HRV</span>
+      <h4>Variabilidad cardíaca</h4>
+      <p>Mejora directa en el marcador fisiológico de regulación autonómica.</p>
+      <span class="result-stat">+18–32% en 4 a 8 semanas</span>
+    </div>
+    <div class="result-card">
+      <span class="result-arrow down">↓ Ansiedad</span>
+      <h4>Ansiedad percibida</h4>
+      <p>Reducción significativa en escalas clínicas validadas de síntomas ansiosos.</p>
+      <span class="result-stat">Medido con escalas clínicas</span>
+    </div>
+    <div class="result-card">
+      <span class="result-arrow up">↑ Sueño</span>
+      <h4>Calidad del sueño</h4>
+      <p>Menor latencia de inicio, mayor proporción de sueño profundo restaurador.</p>
+      <span class="result-stat">Menor latencia + mayor profundidad</span>
+    </div>
+    <div class="result-card">
+      <span class="result-arrow up">↑ Energía</span>
+      <h4>Energía sostenida</h4>
+      <p>Reducción de picos y caídas durante el día. Rendimiento más estable.</p>
+      <span class="result-stat">Sin estimulantes artificiales</span>
+    </div>
+  </div>
+
+  <div class="caso-wrap">
+    <div class="caso-antes">
+      <span class="caso-label">Caso real · Antes</span>
+      <p class="caso-title">Hombre, 34 años — burnout</p>
+      <ul class="caso-list">
+        <li>HRV inicial en rango bajo crítico</li>
+        <li>Sueño fragmentado, despertares frecuentes</li>
+        <li>Fatiga constante desde el inicio del día</li>
+        <li>Dependencia alta de cafeína para funcionar</li>
+      </ul>
+    </div>
+    <div class="caso-despues">
+      <span class="caso-label">Después de 6 semanas de protocolo</span>
+      <p class="caso-title">Resultados objetivos medidos</p>
+      <ul class="caso-list">
+        <li>VFC aumentó 27% (medición Polar H10)</li>
+        <li>Sueño profundo estable, sin despertares</li>
+        <li>Energía sostenida sin cafeína desde semana 4</li>
+        <li>VRS pasó de 72 (disregulación alta) a 41 (funcional estable)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VRS SCORE ═══ -->
+<section id="vrs">
+  <span class="section-label">Tecnología propietaria</span>
+  <h2 class="section-title">Entiende tu sistema nervioso<br>en un solo número</h2>
+  <p class="section-body" style="max-width:560px">
+    El Vita'é Regulation Score (VRS) traduce tu estado fisiológico en una escala de 0 a 100 — 
+    combinando medición objetiva de HRV con autoreporte clínico validado en 9 dimensiones. 
+    No es una encuesta de bienestar. Es tu baseline real.
+  </p>
+
+  <div class="vrs-layout">
+    <div>
+      <div class="scale-bar">
+        <div class="scale-item low">
+          <span class="scale-range">0 – 40</span>
+          <span class="scale-indicator"></span>
+          <div class="scale-content">
+            <h4>Disregulación alta</h4>
+            <p>Fatiga persistente, ansiedad, sueño alterado, niebla mental. El sistema está en deuda fisiológica.</p>
+          </div>
+        </div>
+        <div class="scale-item mid">
+          <span class="scale-range">40 – 70</span>
+          <span class="scale-indicator"></span>
+          <div class="scale-content">
+            <h4>Funcional pero inestable</h4>
+            <p>Operas, pero con costo fisiológico alto. El rendimiento es sostenido a fuerza de voluntad, no de regulación real.</p>
+          </div>
+        </div>
+        <div class="scale-item high">
+          <span class="scale-range">70 – 100</span>
+          <span class="scale-indicator"></span>
+          <div class="scale-content">
+            <h4>Regulación óptima</h4>
+            <p>Energía, claridad y resiliencia sostenida. El sistema nervioso responde, no reacciona.</p>
+          </div>
+        </div>
+      </div>
+      <div class="vrs-frase">
+        <p>No tratamos síntomas. Optimizamos el sistema que los produce.</p>
+      </div>
+      <div style="margin-top:2rem">
+        <a href="#contacto" class="btn-primary">Haz tu evaluación VRS →</a>
+      </div>
+    </div>
+
+    <div>
+      <p style="font-family:'Space Mono',monospace;font-size:.6rem;color:var(--text-soft);margin-bottom:1.5rem;letter-spacing:.04em;text-transform:uppercase">Las 9 dimensiones del score</p>
+      <div class="dims-grid">
+        <div class="dim" style="transition-delay:.00s"><div class="dim-code">D1</div><div class="dim-name">Regulación Autonómica</div><div class="dim-w">22%</div><div class="dim-bar"><div class="dim-fill" style="width:22%"></div></div></div>
+        <div class="dim" style="transition-delay:.06s"><div class="dim-code">D2</div><div class="dim-name">Sueño y Ritmo Circadiano</div><div class="dim-w">15%</div><div class="dim-bar"><div class="dim-fill" style="width:15%"></div></div></div>
+        <div class="dim" style="transition-delay:.12s"><div class="dim-code">D3</div><div class="dim-name">Energía Fisiológica</div><div class="dim-w">10%</div><div class="dim-bar"><div class="dim-fill" style="width:10%"></div></div></div>
+        <div class="dim" style="transition-delay:.18s"><div class="dim-code">D4</div><div class="dim-name">Carga Alostática</div><div class="dim-w">13%</div><div class="dim-bar"><div class="dim-fill" style="width:13%"></div></div></div>
+        <div class="dim" style="transition-delay:.24s"><div class="dim-code">D5</div><div class="dim-name">Regulación Emocional</div><div class="dim-w">13%</div><div class="dim-bar"><div class="dim-fill" style="width:13%"></div></div></div>
+        <div class="dim" style="transition-delay:.30s"><div class="dim-code">D6</div><div class="dim-name">Cognición y Sobrecarga</div><div class="dim-w">10%</div><div class="dim-bar"><div class="dim-fill" style="width:10%"></div></div></div>
+        <div class="dim" style="transition-delay:.36s"><div class="dim-code">D7</div><div class="dim-name">Regulación Somática</div><div class="dim-w">5%</div><div class="dim-bar"><div class="dim-fill" style="width:5%"></div></div></div>
+        <div class="dim" style="transition-delay:.42s"><div class="dim-code">D8</div><div class="dim-name">Seguridad Polivagal</div><div class="dim-w">5%</div><div class="dim-bar"><div class="dim-fill" style="width:5%"></div></div></div>
+        <div class="dim" style="transition-delay:.48s"><div class="dim-code">D9</div><div class="dim-name">Interocepción</div><div class="dim-w">7%</div><div class="dim-bar"><div class="dim-fill" style="width:7%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ECOSISTEMA ═══ -->
+<section id="ecosistema">
+  <div class="eco-intro">
+    <div>
+      <span class="section-label">Ecosistema de regulación</span>
+      <h2 class="section-title">Protocolos diseñados<br>para tu sistema nervioso</h2>
+      <p class="section-body">
+        Cada modalidad actúa directamente sobre el sistema nervioso autónomo. 
+        No son servicios de bienestar aislados — son palancas de un mismo ecosistema. 
+        Se potencian entre sí. Se miden con el VRS.
+      </p>
+    </div>
+    <div class="eco-philosophy">
+      <p>"La tecnología más poderosa para regular tu sistema nervioso no es un app — es el contraste térmico, el frío, la respiración, la presencia humana."</p>
+      <cite>— Principio fundacional del laboratorio</cite>
+    </div>
+  </div>
+
+  <div class="services-grid">
+
+    <div class="svc">
+      <div class="svc-img-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M8 2v4M12 2v4M8 6h8l1 14H7L8 6z"/><path d="M10 10v6M14 10v6"/></svg>
+      </div>
+      <div class="svc-body">
+        <span class="svc-cat">Recuperación celular</span>
+        <h3>Sueroterapia IV</h3>
+        <p class="svc-hook">No es hidratación. Es restauración celular directa.</p>
+        <span class="svc-section-label">Ideal si tienes</span>
+        <ul class="svc-list">
+          <li>Agotamiento sin razón clara</li>
+          <li>Baja energía constante</li>
+          <li>Alta carga mental o física sostenida</li>
+        </ul>
+        <span class="svc-section-label">No es para ti si</span>
+        <ul class="svc-list no">
+          <li>Buscas resultados exclusivamente cosméticos</li>
+        </ul>
+        <p class="svc-integra">Se integra con: <strong>VRS + nutrición + regulación autonómica</strong></p>
+      </div>
+    </div>
+
+    <div class="svc">
+      <div class="svc-img-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M4 14s0-6 8-6 8 6 8 6"/><path d="M4 18h16"/><path d="M12 2v6"/></svg>
+      </div>
+      <div class="svc-body">
+        <span class="svc-cat">Regulación autonómica</span>
+        <h3>Inmersión en Agua Helada</h3>
+        <p class="svc-hook">El frío controlado entrena tu sistema nervioso para responder, no para reaccionar.</p>
+        <span class="svc-section-label">Ideal si tienes</span>
+        <ul class="svc-list">
+          <li>Ansiedad o respuesta exagerada al estrés</li>
+          <li>Inflamación crónica o dolor muscular</li>
+          <li>Dificultad para recuperarte tras esfuerzo</li>
+        </ul>
+        <span class="svc-section-label">No es para ti si</span>
+        <ul class="svc-list no">
+          <li>Tienes patologías cardiovasculares no controladas</li>
+        </ul>
+        <p class="svc-integra">Se integra con: <strong>Terapia de contraste + VRS + psicología</strong></p>
+      </div>
+    </div>
+
+    <div class="svc">
+      <div class="svc-img-placeholder">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12c0-2 1.5-4 4-4s4 2 4 4"/></svg>
+      </div>
+      <div class="svc-body">
+        <span class="svc-cat">Recuperación profunda</span>
+        <h3>Sauna Infrarrojo</h3>
+        <p class="svc-hook">Calor que penetra tejidos. El sistema parasimpático te lo agradece.</p>
+        <span class="svc-section-label">Ideal si tienes</span>
+        <ul class="svc-list">
+          <li>Tensión muscular crónica o dolor difuso</li>
+          <li>Sueño no reparador</li>
+          <li>Alta carga tóxica o estrés acumulado</li>
+        </ul>
+        <span class="svc-section-label">No es para ti si</span>
+        <ul class="svc-list no">
+          <li>Tienes sensibilidad severa al calor o claustrofobia</li>
+        </ul>
+        <p class="svc-integra">Se integra con: <strong>Terapia de contraste + masajes</strong></p>
+      </div>
+    </div>
+
+    <div class="svc">
+      <div class="svc-img-placeholder">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20"/></svg>
+      </div>
+      <div class="svc-body">
+        <span class="svc-cat">Entrenamiento autonómico</span>
+        <h3>Terapia de Contraste</h3>
+        <p class="svc-hook">Calor y frío alternados. El protocolo más potente para entrenar la respuesta autonómica.</p>
+        <span class="svc-section-label">Ideal si tienes</span>
+        <ul class="svc-list">
+          <li>Alta variabilidad emocional o de energía</li>
+          <li>Recuperación lenta tras esfuerzo</li>
+          <li>Sueño profundo insuficiente</li>
+        </ul>
+        <span class="svc-section-label">No es para ti si</span>
+        <ul class="svc-list no">
+          <li>Nunca has tenido exposición al frío — empezamos gradual</li>
+        </ul>
+        <p class="svc-integra">Se integra con: <strong>Inmersión + sauna + VRS</strong></p>
+      </div>
+    </div>
+
+    <div class="svc">
+      <div class="svc-img-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M18 11c-1.5-1-3.5-1-5 0s-3.5 1-5 0"/><ellipse cx="12" cy="12" rx="10" ry="6"/></svg>
+      </div>
+      <div class="svc-body">
+        <span class="svc-cat">Regulación somática</span>
+        <h3>Masajes Terapéuticos</h3>
+        <p class="svc-hook">El sistema nervioso vive en el cuerpo. El trabajo manual lo recuerda.</p>
+        <span class="svc-section-label">Ideal si tienes</span>
+        <ul class="svc-list">
+          <li>Estrés almacenado en el cuerpo (tensión, contracturas)</li>
+          <li>Dificultad para desactivarte al final del día</li>
+          <li>Proceso de regulación activo en curso</li>
+        </ul>
+        <span class="svc-section-label">No es para ti si</span>
+        <ul class="svc-list no">
+          <li>Buscas un masaje de relajación superficial sin enfoque clínico</li>
+        </ul>
+        <p class="svc-integra">Se integra con: <strong>Sauna + psicología + nutrición</strong></p>
+      </div>
+    </div>
+
+    <div class="svc">
+      <div class="svc-img-placeholder">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M7 13c-2 1-3 3-3 5h16c0-2-1-4-3-5"/></svg>
+      </div>
+      <div class="svc-body">
+        <span class="svc-cat">Bienestar integrado</span>
+        <h3>Limpiezas Faciales</h3>
+        <p class="svc-hook">La piel es el reflejo del sistema nervioso. Cuidarla es parte del protocolo.</p>
+        <span class="svc-section-label">Ideal si tienes</span>
+        <ul class="svc-list">
+          <li>Piel reactiva asociada al estrés crónico</li>
+          <li>Necesidad de un espacio de pausa activa</li>
+          <li>Proceso de bienestar integral en curso</li>
+        </ul>
+        <span class="svc-section-label">No es para ti si</span>
+        <ul class="svc-list no">
+          <li>Buscas tratamientos estrictamente dermatológicos</li>
+        </ul>
+        <p class="svc-integra">Se integra con: <strong>Masajes + nutrición + VRS</strong></p>
+      </div>
+    </div>
+
+    <div class="svc svc-wide">
+      <div class="svc-img-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div class="svc-body">
+        <span class="svc-cat">Clínica especializada</span>
+        <h3>Atención Psicológica</h3>
+        <p class="svc-hook">No abordamos síntomas. Entendemos el sistema nervioso como totalidad y trabajamos sobre él.</p>
+        <span class="svc-section-label">Ideal si tienes</span>
+        <ul class="svc-list">
+          <li>Ansiedad, burnout o fatiga crónica que no cede</li>
+          <li>Dificultad para regular emociones bajo presión sostenida</li>
+          <li>Quieres un proceso con datos, no solo conversación</li>
+        </ul>
+        <span class="svc-section-label">No es para ti si</span>
+        <ul class="svc-list no">
+          <li>Buscas apoyo exclusivamente de crisis aguda sin proceso — te derivamos al recurso correcto</li>
+        </ul>
+        <p class="svc-integra">Se integra con: <strong>VRS + todos los protocolos del ecosistema</strong></p>
+      </div>
+    </div>
+
+    <div class="svc svc-wide">
+      <div class="svc-img-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M12 2a9 9 0 0 0-9 9c0 4.17 2.84 7.67 6.69 8.69L12 22l2.31-2.31C18.16 18.67 21 15.17 21 11a9 9 0 0 0-9-9z"/></svg>
+      </div>
+      <div class="svc-body">
+        <span class="svc-cat">Eje intestino-cerebro</span>
+        <h3>Nutrición para el Sistema Nervioso</h3>
+        <p class="svc-hook">El 90% de la serotonina se produce en el intestino. Lo que comes regula tu sistema nervioso — lo sepas o no.</p>
+        <span class="svc-section-label">Ideal si tienes</span>
+        <ul class="svc-list">
+          <li>Ansiedad, irritabilidad o niebla mental frecuente</li>
+          <li>Energía inestable o dependencia de estimulantes</li>
+          <li>Sueño alterado sin causa aparente</li>
+        </ul>
+        <span class="svc-section-label">No es para ti si</span>
+        <ul class="svc-list no">
+          <li>Buscas únicamente dieta estética sin enfoque funcional</li>
+        </ul>
+        <p class="svc-integra">Se integra con: <strong>Sueroterapia + psicología + VRS</strong></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ HISTORIA ═══ -->
+<section id="historia">
+  <div class="historia-inner">
+    <div class="historia-text">
+      <span class="section-label">Por qué existe Vita'é Plena</span>
+      <h2 class="section-title">No nació desde<br>el bienestar.</h2>
+      <p class="section-body">
+        Vita'é Plena nació al observar un patrón repetido: personas funcionales en apariencia, 
+        pero fisiológicamente agotadas.
+      </p>
+      <p class="section-body" style="margin-top:1rem">
+        Ansiedad tratada como problema emocional. Fatiga tratada como falta de disciplina. 
+        Burnout normalizado como precio del éxito. Pero el problema no era psicológico ni de actitud. 
+        Era fisiológico.
+      </p>
+      <p class="section-body" style="margin-top:1rem">
+        El sistema nervioso estaba desregulado. Y lo que no se mide, no se puede corregir.
+      </p>
+      <p class="section-body" style="margin-top:1rem">
+        Por eso construimos un laboratorio donde la regulación no se adivina. 
+        Se mide, se entrena y se optimiza.
+      </p>
+    </div>
+    <div class="historia-visual">
+      <div class="historia-card">
+        <div class="historia-stat">
+          <div class="h-stat-item">
+            <span class="h-stat-num">9</span>
+            <div class="h-stat-text">
+              <strong>Dimensiones clínicas medidas</strong>
+              <span>Cada una con peso específico en el score final. No hay bienestar sin fisiología.</span>
+            </div>
+          </div>
+          <div class="h-stat-item">
+            <span class="h-stat-num">8</span>
+            <div class="h-stat-text">
+              <strong>Modalidades terapéuticas integradas</strong>
+              <span>Diseñadas para actuar sobre el mismo sistema. Cada una potencia a las demás.</span>
+            </div>
+          </div>
+          <div class="h-stat-item">
+            <span class="h-stat-num">1</span>
+            <div class="h-stat-text">
+              <strong>Objetivo claro</strong>
+              <span>Que tu sistema nervioso responda con precisión a un mundo que no va a volverse más fácil.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACTO ═══ -->
+<section id="contacto">
+  <div class="contacto-hero">
+    <span class="section-label">Empecemos</span>
+    <h2>No necesitas más información.<br>Necesitas tu línea base.</h2>
+    <p>Haz tu evaluación VRS inicial y recibe tu mapa de regulación — 
+    un diagnóstico real de tu sistema nervioso, no una encuesta de bienestar.</p>
+    <div class="contacto-hero-btns">
+      <a href="#cform" class="btn-primary-inv">Haz tu evaluación VRS inicial →</a>
+      <a href="#ecosistema" class="btn-outline-light">Ver protocolos</a>
+    </div>
+  </div>
+
+  <div class="contact-layout" id="cform">
+    <div class="contact-left">
+      <h3>"Recibe tu mapa de regulación — entiende exactamente dónde está tu sistema nervioso y qué necesita."</h3>
+      <div class="contact-info">
+        <div class="ci">
+          <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+          <span>Medellín, Colombia</span>
+        </div>
+        <div class="ci">
+          <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <span><a href="/cdn-cgi/l/email-protection#6e18071a0f0b1e020b000f2e09030f0702400d0103"><span class="__cf_email__" data-cfemail="a7d1ced3c6c2d7cbc2c9c6e7c0cac6cecb89c4c8ca">[email&#160;protected]</span></a></span>
+        </div>
+        <div class="ci">
+          <div class="ci-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.84a16 16 0 0 0 6.29 6.29l1.13-1.13a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <span><a href="https://wa.me/573007037467" target="_blank" rel="noopener">+57 300 703 7467 · WhatsApp</a></span>
+        </div>
+        <div class="ci">
+          <div class="ci-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <span>Respuesta en menos de 24 horas</span>
+        </div>
+        <div class="ci">
+          <div class="ci-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+          <span>Laboratorio físico · Plataforma digital · Programas remotos</span>
+        </div>
+      </div>
+    </div>
+    <div class="cform" id="contactForm">
+      <div class="frow">
+        <div class="fg"><label>Nombre completo</label><input type="text" id="f-nombre" placeholder="Tu nombre"></div>
+        <div class="fg"><label>Organización</label><input type="text" id="f-org" placeholder="Empresa / institución (opcional)"></div>
+      </div>
+      <div class="fg"><label>Correo electrónico</label><input type="email" id="f-email" placeholder="tu@correo.com"></div>
+      <div class="fg">
+        <label>¿Qué te interesa?</label>
+        <select id="f-interes">
+          <option value="">Selecciona una opción</option>
+          <option>Evaluación VRS (inicio del proceso)</option>
+          <option>Sueroterapia IV</option>
+          <option>Inmersión en agua helada</option>
+          <option>Sauna infrarrojo</option>
+          <option>Terapia de contraste</option>
+          <option>Masajes terapéuticos</option>
+          <option>Limpiezas faciales</option>
+          <option>Atención psicológica</option>
+          <option>Nutrición para el sistema nervioso</option>
+          <option>Programa empresarial / organizacional</option>
+          <option>Inversión / Alianza estratégica</option>
+          <option>Paquete integral (varios servicios)</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Cuéntanos más</label>
+        <textarea id="f-mensaje" placeholder="¿Qué estás sintiendo o buscando resolver? No hay respuesta incorrecta."></textarea>
+      </div>
+      <button class="fsub" id="f-submit">Enviar → Recibir mi mapa de regulación</button>
+      <div class="form-status" id="form-status"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-brand">
+    <img src="logo.png.png" alt="Vita'é Plena" style="height:36px;width:auto;opacity:.85">
+    <div>
+      <div class="footer-name">VITA'É PLENA</div>
+      <div class="footer-sub">Human Regulation Lab · Medellín</div>
+    </div>
+  </div>
+  <ul class="flinks">
+    <li><a href="#que-es">Qué es</a></li>
+    <li><a href="#ecosistema">Servicios</a></li>
+    <li><a href="#vrs">VRS Score</a></li>
+    <li><a href="#historia">Historia</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <span class="fcopy">© 2025 Vita'é Plena · Todos los derechos reservados</span>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Nav scroll
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
+
+// Intersection Observer
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.pillar,.manifesto-box,.eco-philosophy,.svc,.dim,.result-card,.historia-visual').forEach(el => io.observe(el));
+
+// Formulario — Formspree
+document.getElementById('f-submit').addEventListener('click', async () => {
+  const nombre  = document.getElementById('f-nombre').value.trim();
+  const email   = document.getElementById('f-email').value.trim();
+  const interes = document.getElementById('f-interes').value;
+  const mensaje = document.getElementById('f-mensaje').value.trim();
+  const org     = document.getElementById('f-org').value.trim();
+  const status  = document.getElementById('form-status');
+
+  if (!nombre || !email) {
+    status.textContent = 'Por favor completa nombre y correo.';
+    status.className = 'form-status err';
+    return;
+  }
+
+  const btn = document.getElementById('f-submit');
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('https://formspree.io/f/mojpeowy', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ nombre, email, org, interes, mensaje })
+    });
+
+    if (res.ok) {
+      status.textContent = 'Mensaje recibido. Te contactamos en menos de 24 horas.';
+      status.className = 'form-status ok';
+      btn.textContent = 'Enviado ✓';
+    } else {
+      throw new Error();
+    }
+  } catch {
+    status.textCo
