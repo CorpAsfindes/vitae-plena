@@ -254,36 +254,28 @@ section{position:relative}
 /* ── SPA ── */
 #spa{padding:8rem 8%;background:var(--green-deep)}
 #spa .section-label{color:var(--gold-light)}
-#spa .section-title{color:var(--cream)}
+#spa .section-title{color:var(--cream);font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:3rem}
+.spa-title-accent{color:var(--gold-light);font-style:italic}
 #spa .section-body{color:rgba(200,221,208,.8)}
-.spa-inner{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
-.spa-disclaimer{
-  margin-top:2rem;padding:1.2rem 1.6rem;
-  border-left:3px solid var(--gold);
-  background:rgba(181,146,76,.08);
-  font-size:.84rem;line-height:1.65;
-  color:var(--gold-light);font-style:italic;
-  border-radius:0 3px 3px 0;
-}
+.spa-header{margin-bottom:4rem;max-width:800px}
+.spa-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.spa-symptoms{list-style:none;margin-top:1rem;display:flex;flex-direction:column;gap:.5rem}
+.spa-symptoms li{font-size:.88rem;color:rgba(200,221,208,.8);display:flex;align-items:center;gap:.8rem;line-height:1.5}
+.spa-symptoms li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.spa-stat-box{margin-top:2.5rem;padding:2rem;border:1px solid rgba(200,221,208,.12);border-radius:3px;background:rgba(255,255,255,.03);display:flex;gap:1.5rem;align-items:flex-start}
+.spa-stat-num{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:700;color:var(--gold);line-height:1;flex-shrink:0}
+.spa-stat-text p{font-size:.84rem;line-height:1.65;color:rgba(200,221,208,.75)}
+.spa-propuesta{margin-bottom:2rem}
+.spa-prop-label{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);display:block;margin-bottom:1.2rem}
 .spa-protocol{display:flex;flex-direction:column;gap:0;border:1px solid rgba(200,221,208,.1);border-radius:3px;overflow:hidden}
-.spa-layer{
-  display:flex;gap:1.6rem;padding:2rem;
-  border-bottom:1px solid rgba(200,221,208,.08);
-  transition:background .25s;
-}
+.spa-layer{display:flex;gap:1.4rem;padding:1.6rem;border-bottom:1px solid rgba(200,221,208,.08);transition:background .25s}
 .spa-layer:last-child{border-bottom:none}
 .spa-layer:hover{background:rgba(255,255,255,.04)}
-.spa-layer-num{
-  font-family:"Space Mono",monospace;font-size:.65rem;
-  font-weight:700;color:var(--gold);letter-spacing:.1em;
-  flex-shrink:0;min-width:28px;padding-top:.2rem;
-}
-.spa-layer-content h4{
-  font-family:"Cormorant Garamond",serif;font-size:1.1rem;
-  font-weight:600;color:var(--cream);margin-bottom:.4rem;
-}
-.spa-layer-content p{font-size:.82rem;line-height:1.68;color:rgba(200,221,208,.7)}
-
+.spa-layer-num{font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:var(--gold);letter-spacing:.1em;flex-shrink:0;min-width:24px;padding-top:.2rem}
+.spa-layer-content h4{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--cream);margin-bottom:.3rem}
+.spa-layer-content p{font-size:.78rem;line-height:1.65;color:rgba(200,221,208,.65)}
+.spa-disclaimer{padding:1.2rem 1.6rem;border-left:3px solid var(--gold);background:rgba(181,146,76,.08);font-size:.84rem;line-height:1.7;color:var(--gold-light);font-style:italic;border-radius:0 3px 3px 0;margin-bottom:2rem}
+.spa-ctas{display:flex;gap:1rem;flex-wrap:wrap}
 
 /* ── HISTORIA ── */
 #historia{padding:8rem 8%;background:var(--cream)}
@@ -555,61 +547,81 @@ footer{background:var(--text-dark);padding:3rem 8%;display:flex;align-items:cent
 
 <!-- ═══ SPA ═══ -->
 <section id="spa">
+  <div class="spa-header">
+    <span class="section-label">Protocolo especializado en desregulación por consumo de sustancias</span>
+    <h2 class="section-title">Cuando el sistema nervioso pierde<br>su capacidad de autorregulación,<br>la recuperación no depende solo<br>de la voluntad.<br><span class="spa-title-accent">Depende de restaurar la fisiología.</span></h2>
+  </div>
+
   <div class="spa-inner">
-    <div class="spa-text">
-      <span class="section-label">Protocolo especializado</span>
-      <h2 class="section-title">Cuando el sistema nervioso<br>perdió su punto de retorno.</h2>
-      <p class="section-body">
-        El consumo crónico de sustancias psicoactivas no es solo un problema de conducta. 
-        Es una alteración fisiológica profunda: el Sistema Nervioso Autónomo queda 
-        atrapado en un ciclo de desregulación que los modelos tradicionales no resuelven 
-        porque no lo miden.
-      </p>
-      <p class="section-body" style="margin-top:1rem">
-        En Colombia, más del 60% de las personas en proceso de recuperación recaen 
-        durante el primer año. No por falta de voluntad. Por falta de restauración fisiológica.
-      </p>
-      <p class="section-body" style="margin-top:1rem">
-        Vita’� Plena interviene donde los modelos convencionales no llegan: 
-        en la bioquímica del sistema nervioso, en la tolerancia al malestar, 
-        en la regulación emocional y en la medición objetiva de la evolución real del paciente.
-      </p>
-      <div class="spa-disclaimer">No somos un centro de rehabilitación. Somos el componente fisiológico 
-      que potencia cualquier proceso de recuperación en curso.</div>
+    <div class="spa-left">
+      <div class="spa-block">
+        <p class="section-body">El consumo crónico de sustancias psicoactivas no es únicamente un problema de conducta. Es una alteración profunda del sistema nervioso autónomo.</p>
+        <p class="section-body" style="margin-top:1rem">El organismo queda atrapado en un ciclo de:</p>
+        <ul class="spa-symptoms">
+          <li>Disregulación fisiológica</li>
+          <li>Baja tolerancia al malestar</li>
+          <li>Respuestas impulsivas</li>
+          <li>Alteraciones del sueño y la energía</li>
+        </ul>
+        <p class="section-body" style="margin-top:1.5rem">Los modelos tradicionales fallan en un punto crítico: <strong style="color:var(--cream)">no miden ni restauran la regulación fisiológica.</strong></p>
+      </div>
+
+      <div class="spa-stat-box">
+        <div class="spa-stat-num">60%</div>
+        <div class="spa-stat-text">
+          <p>de las personas en proceso de recuperación en Colombia recaen durante el primer año.</p>
+          <p style="margin-top:.6rem;font-style:italic;color:var(--gold-light)">No por falta de voluntad. Por falta de restauración fisiológica.</p>
+        </div>
+      </div>
     </div>
-    <div class="spa-protocol">
-      <div class="spa-layer">
-        <div class="spa-layer-num">01</div>
-        <div class="spa-layer-content">
-          <h4>Restauración Biomolecular</h4>
-          <p>Sueroterapia IV ortomolecular para restaurar el equilibrio bioquímico del SNA y la señalización celular alterada por el consumo crónico. Reducción de síntomas de abstinencia sin fármacos de sustitución — actuando sobre la causa fisiológica, no sobre el síntoma.</p>
+
+    <div class="spa-right">
+      <div class="spa-propuesta">
+        <span class="spa-prop-label">Vita'é Plena interviene donde otros modelos no llegan</span>
+        <div class="spa-protocol">
+          <div class="spa-layer">
+            <div class="spa-layer-num">01</div>
+            <div class="spa-layer-content">
+              <h4>Restauración Biomolecular</h4>
+              <p>Sueroterapia IV ortomolecular para optimizar la bioquímica cerebral y restaurar el equilibrio del SNA alterado por el consumo crónico. Sin fármacos de sustitución.</p>
+            </div>
+          </div>
+          <div class="spa-layer">
+            <div class="spa-layer-num">02</div>
+            <div class="spa-layer-content">
+              <h4>Hormesis — Contraste Térmico</h4>
+              <p>Entrenamiento de tolerancia al malestar mediante inmersión en frío e infrarrojo. El organismo aprende a sostener la incomodidad sin recurrir a sustancias.</p>
+            </div>
+          </div>
+          <div class="spa-layer">
+            <div class="spa-layer-num">03</div>
+            <div class="spa-layer-content">
+              <h4>DBT + TCC Integradas</h4>
+              <p>Regulación emocional y reestructuración cognitiva con las terapias de mayor evidencia para procesos de desregulación conductual.</p>
+            </div>
+          </div>
+          <div class="spa-layer">
+            <div class="spa-layer-num">04</div>
+            <div class="spa-layer-content">
+              <h4>Medición VRS Longitudinal</h4>
+              <p>El primer sistema en Latinoamérica que mide la evolución fisiológica real durante la recuperación. Diferencia mejora aparente de mejora real sustentada en datos.</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="spa-layer">
-        <div class="spa-layer-num">02</div>
-        <div class="spa-layer-content">
-          <h4>Hormesis — Contraste Térmico</h4>
-          <p>Inmersión en frío e infrarrojo como entrenamiento de tolerancia al malestar. El organismo aprende a sostener la incomodidad sin recurrir a sustancias — mediante estrés controlado y progresivo que fortalece la respuesta autonómica.</p>
-        </div>
+
+      <div class="spa-disclaimer">
+        No somos un centro de rehabilitación.<br>
+        Somos el componente fisiológico que potencia cualquier proceso de recuperación.
       </div>
-      <div class="spa-layer">
-        <div class="spa-layer-num">03</div>
-        <div class="spa-layer-content">
-          <h4>DBT + TCC Integradas</h4>
-          <p>Las dos terapias con mayor evidencia para procesos de desregulación conductual. La Terapia Dialéctica Conductual (DBT) ha demostrado superioridad para remitir impulsividad emocional. La TCC reestructura los patrones cognitivos que sostienen el ciclo.</p>
-        </div>
-      </div>
-      <div class="spa-layer">
-        <div class="spa-layer-num">04</div>
-        <div class="spa-layer-content">
-          <h4>Medición VRS Longitudinal</h4>
-          <p>El primer sistema en Latinoamérica que mide la evolución fisiológica real durante un proceso de recuperación. Diferencia entre mejora aparente — "me siento mejor" — y mejora real, sustentada en HRV y datos objetivos. Sin datos, no hay criterio clínico.</p>
-        </div>
+
+      <div class="spa-ctas">
+        <a href="https://joyful-sunshine-519331.netlify.app" target="_blank" rel="noopener" class="btn-primary-inv">Evalúa tu nivel de desregulación →</a>
+        <a href="#cform" class="btn-outline-light">Solicitar valoración inicial</a>
       </div>
     </div>
   </div>
 </section>
-
 
 <!-- ═══ VRS SCORE ═══ -->
 <section id="vrs">
