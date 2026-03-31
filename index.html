@@ -251,6 +251,40 @@ section{position:relative}
 .svc-integra strong{color:var(--green-mid);font-weight:500}
 .svc-wide{grid-column:span 2}
 
+/* ── SPA ── */
+#spa{padding:8rem 8%;background:var(--green-deep)}
+#spa .section-label{color:var(--gold-light)}
+#spa .section-title{color:var(--cream)}
+#spa .section-body{color:rgba(200,221,208,.8)}
+.spa-inner{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.spa-disclaimer{
+  margin-top:2rem;padding:1.2rem 1.6rem;
+  border-left:3px solid var(--gold);
+  background:rgba(181,146,76,.08);
+  font-size:.84rem;line-height:1.65;
+  color:var(--gold-light);font-style:italic;
+  border-radius:0 3px 3px 0;
+}
+.spa-protocol{display:flex;flex-direction:column;gap:0;border:1px solid rgba(200,221,208,.1);border-radius:3px;overflow:hidden}
+.spa-layer{
+  display:flex;gap:1.6rem;padding:2rem;
+  border-bottom:1px solid rgba(200,221,208,.08);
+  transition:background .25s;
+}
+.spa-layer:last-child{border-bottom:none}
+.spa-layer:hover{background:rgba(255,255,255,.04)}
+.spa-layer-num{
+  font-family:"Space Mono",monospace;font-size:.65rem;
+  font-weight:700;color:var(--gold);letter-spacing:.1em;
+  flex-shrink:0;min-width:28px;padding-top:.2rem;
+}
+.spa-layer-content h4{
+  font-family:"Cormorant Garamond",serif;font-size:1.1rem;
+  font-weight:600;color:var(--cream);margin-bottom:.4rem;
+}
+.spa-layer-content p{font-size:.82rem;line-height:1.68;color:rgba(200,221,208,.7)}
+
+
 /* ── HISTORIA ── */
 #historia{padding:8rem 8%;background:var(--cream)}
 .historia-inner{display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center}
@@ -339,7 +373,7 @@ footer{background:var(--text-dark);padding:3rem 8%;display:flex;align-items:cent
 
 @media(max-width:960px){
   #hero{grid-template-columns:1fr}.hero-right{display:none}.hero-left{padding:9rem 6% 5rem}
-  .que-es-inner,.eco-intro,.vrs-layout,.historia-inner,.contact-layout{grid-template-columns:1fr;gap:3rem}
+  .que-es-inner,.eco-intro,.vrs-layout,.historia-inner,.contact-layout,.spa-inner{grid-template-columns:1fr;gap:3rem}
   .services-grid{grid-template-columns:repeat(2,1fr)}.svc-wide{grid-column:span 1}
   .results-grid{grid-template-columns:repeat(2,1fr)}.caso-wrap{grid-template-columns:1fr}
   .dims-grid{grid-template-columns:repeat(2,1fr)}.nav-links{display:none}
@@ -361,6 +395,7 @@ footer{background:var(--text-dark);padding:3rem 8%;display:flex;align-items:cent
   <ul class="nav-links">
     <li><a href="#que-es">Qué es</a></li>
     <li><a href="#ecosistema">Servicios</a></li>
+    <li><a href="#spa">Protocolo SPA</a></li>
     <li><a href="#vrs">VRS Score</a></li>
     <li><a href="#historia">Nuestra historia</a></li>
     <li><a href="#contacto" class="nav-cta">Evaluación VRS</a></li>
@@ -517,6 +552,64 @@ footer{background:var(--text-dark);padding:3rem 8%;display:flex;align-items:cent
     </div>
   </div>
 </section>
+
+<!-- ═══ SPA ═══ -->
+<section id="spa">
+  <div class="spa-inner">
+    <div class="spa-text">
+      <span class="section-label">Protocolo especializado</span>
+      <h2 class="section-title">Cuando el sistema nervioso<br>perdió su punto de retorno.</h2>
+      <p class="section-body">
+        El consumo crónico de sustancias psicoactivas no es solo un problema de conducta. 
+        Es una alteración fisiológica profunda: el Sistema Nervioso Autónomo queda 
+        atrapado en un ciclo de desregulación que los modelos tradicionales no resuelven 
+        porque no lo miden.
+      </p>
+      <p class="section-body" style="margin-top:1rem">
+        En Colombia, más del 60% de las personas en proceso de recuperación recaen 
+        durante el primer año. No por falta de voluntad. Por falta de restauración fisiológica.
+      </p>
+      <p class="section-body" style="margin-top:1rem">
+        Vita’� Plena interviene donde los modelos convencionales no llegan: 
+        en la bioquímica del sistema nervioso, en la tolerancia al malestar, 
+        en la regulación emocional y en la medición objetiva de la evolución real del paciente.
+      </p>
+      <div class="spa-disclaimer">No somos un centro de rehabilitación. Somos el componente fisiológico 
+      que potencia cualquier proceso de recuperación en curso.</div>
+    </div>
+    <div class="spa-protocol">
+      <div class="spa-layer">
+        <div class="spa-layer-num">01</div>
+        <div class="spa-layer-content">
+          <h4>Restauración Biomolecular</h4>
+          <p>Sueroterapia IV ortomolecular para restaurar el equilibrio bioquímico del SNA y la señalización celular alterada por el consumo crónico. Reducción de síntomas de abstinencia sin fármacos de sustitución — actuando sobre la causa fisiológica, no sobre el síntoma.</p>
+        </div>
+      </div>
+      <div class="spa-layer">
+        <div class="spa-layer-num">02</div>
+        <div class="spa-layer-content">
+          <h4>Hormesis — Contraste Térmico</h4>
+          <p>Inmersión en frío e infrarrojo como entrenamiento de tolerancia al malestar. El organismo aprende a sostener la incomodidad sin recurrir a sustancias — mediante estrés controlado y progresivo que fortalece la respuesta autonómica.</p>
+        </div>
+      </div>
+      <div class="spa-layer">
+        <div class="spa-layer-num">03</div>
+        <div class="spa-layer-content">
+          <h4>DBT + TCC Integradas</h4>
+          <p>Las dos terapias con mayor evidencia para procesos de desregulación conductual. La Terapia Dialéctica Conductual (DBT) ha demostrado superioridad para remitir impulsividad emocional. La TCC reestructura los patrones cognitivos que sostienen el ciclo.</p>
+        </div>
+      </div>
+      <div class="spa-layer">
+        <div class="spa-layer-num">04</div>
+        <div class="spa-layer-content">
+          <h4>Medición VRS Longitudinal</h4>
+          <p>El primer sistema en Latinoamérica que mide la evolución fisiológica real durante un proceso de recuperación. Diferencia entre mejora aparente — "me siento mejor" — y mejora real, sustentada en HRV y datos objetivos. Sin datos, no hay criterio clínico.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- ═══ VRS SCORE ═══ -->
 <section id="vrs">
@@ -920,6 +1013,7 @@ footer{background:var(--text-dark);padding:3rem 8%;display:flex;align-items:cent
   <ul class="flinks">
     <li><a href="#que-es">Qué es</a></li>
     <li><a href="#ecosistema">Servicios</a></li>
+    <li><a href="#spa">Protocolo SPA</a></li>
     <li><a href="#vrs">VRS Score</a></li>
     <li><a href="#historia">Historia</a></li>
     <li><a href="#contacto">Contacto</a></li>
@@ -972,4 +1066,4 @@ document.getElementById('f-submit').addEventListener('click', async () => {
       throw new Error();
     }
   } catch {
-    status.textCo
+    status.text
