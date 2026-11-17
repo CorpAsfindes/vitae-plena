@@ -348,6 +348,9 @@ section{position:relative}
 .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--green-light);background:rgba(255,255,255,.08)}
 .fg select option{background:var(--green-deep);color:var(--cream)}
 .fg textarea{resize:vertical;min-height:100px}
+.fcheck{display:flex;gap:.7rem;align-items:flex-start;font-size:.78rem;line-height:1.6;color:rgba(200,221,208,.75)}
+.fcheck input{margin-top:.3rem;flex-shrink:0;width:16px;height:16px;accent-color:var(--gold)}
+.fcheck a{color:var(--gold-light)}
 .fsub{background:var(--gold);color:var(--green-deep);padding:1rem 2.2rem;border:none;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;cursor:pointer;transition:background .25s,transform .2s;align-self:flex-start}
 .fsub:hover{background:var(--gold-light);transform:translateY(-2px)}
 .form-status{font-size:.8rem;margin-top:.5rem;padding:.6rem 1rem;border-radius:2px;display:none}
@@ -1009,6 +1012,7 @@ footer{background:var(--text-dark);padding:3rem 8%;display:flex;align-items:cent
         <label>Cuéntanos más</label>
         <textarea id="f-mensaje" placeholder="¿Qué estás sintiendo o buscando resolver? No hay respuesta incorrecta."></textarea>
       </div>
+      <label class="fcheck"><input type="checkbox" id="f-autoriza" required> <span>Autorizo a Vitae Plena S.A.S. a tratar mis datos para responder mi solicitud y, si lo marco, para enviarme información de sus servicios, según su <a href="/privacidad" target="_blank">Política de tratamiento de datos</a> (vitaeplena.com/privacidad). Puedo conocer, corregir o pedir la supresión de mis datos escribiendo a privacidad@vitaeplena.com.</span></label>
       <button class="fsub" id="f-submit">Enviar → Recibir mi mapa de regulación</button>
       <div class="form-status" id="form-status"></div>
     </div>
@@ -1031,6 +1035,7 @@ footer{background:var(--text-dark);padding:3rem 8%;display:flex;align-items:cent
     <li><a href="#vrs">VRS Score</a></li>
     <li><a href="#historia">Historia</a></li>
     <li><a href="#contacto">Contacto</a></li>
+    <li><a href="/privacidad">Política de tratamiento de datos</a></li>
   </ul>
   <span class="fcopy">© 2026 Vitae Plena S.A.S. · Todos los derechos reservados</span>
   <span class="fcopy" style="flex-basis:100%">VITAE PLENA S.A.S. · NIT 902.087.040-0 · Calle 75 Sur # 43A-202, Local 104, Sabaneta, Antioquia, Colombia · admin@vitaeplena.com</span>
@@ -1062,6 +1067,13 @@ document.getElementById('f-submit').addEventListener('click', async () => {
     return;
   }
 
+  if (!document.getElementById('f-autoriza').checked) {
+    status.textContent = 'Para enviar el formulario debes marcar la casilla de autorización de tratamiento de datos.';
+    status.className = 'form-status err';
+    return;
+  }
+  const autorizacion = 'Sí. Autorizo a Vitae Plena S.A.S. a tratar mis datos para responder mi solicitud y, si lo marco, para enviarme información de sus servicios, según su Política de tratamiento de datos (vitaeplena.com/privacidad). Puedo conocer, corregir o pedir la supresión de mis datos escribiendo a privacidad@vitaeplena.com.';
+
   const btn = document.getElementById('f-submit');
   btn.textContent = 'Enviando...';
   btn.disabled = true;
@@ -1070,7 +1082,7 @@ document.getElementById('f-submit').addEventListener('click', async () => {
     const res = await fetch('https://formspree.io/f/mojpeowy', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ nombre, email, org, interes, mensaje })
+      body: JSON.stringify({ nombre, email, org, interes, mensaje, autorizacion })
     });
 
     if (res.ok) {

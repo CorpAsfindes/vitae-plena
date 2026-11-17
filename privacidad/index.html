@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de tratamiento de datos personales — Vita'é Plena</title>
+<meta name="description" content="Política de tratamiento de datos personales de Vitae Plena S.A.S.">
+<link rel="canonical" href="https://www.vitaeplena.com/privacidad">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F7F2EA;--cream-dark:#EDE7D9;--cream-mid:#FAF7F2;
+  --green-deep:#1C3D2E;--green-mid:#2E6044;--green-light:#4A8C5C;
+  --green-pale:#C8DDD0;--green-mist:#EAF2ED;
+  --gold:#B5924C;--gold-light:#D4AF72;--gold-pale:#F0E4C8;
+  --text-dark:#1A2218;--text-mid:#3D4F3A;--text-soft:#6B7D67;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--text-dark);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 5%;
+  background:rgba(247,242,234,.95);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(28,61,46,.07);
+  transition:box-shadow .3s;
+}
+nav.scrolled{box-shadow:0 2px 30px rgba(28,61,46,.09)}
+.nav-logo-wrap{display:flex;align-items:center;gap:.8rem}
+.nav-brand{display:flex;flex-direction:column;line-height:1.15}
+.nav-brand-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--green-deep);letter-spacing:.02em}
+.nav-brand-sub{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{font-size:.75rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--text-mid);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--green-deep)}
+.nav-cta{background:var(--green-deep)!important;color:var(--cream)!important;padding:.6rem 1.4rem;border-radius:2px;font-weight:500!important;transition:background .2s!important}
+.nav-cta:hover{background:var(--green-mid)!important}
+
+/* ── FOOTER ── */
+footer{background:var(--text-dark);padding:3rem 8%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
+.footer-brand{display:flex;align-items:center;gap:.8rem}
+.footer-name{font-family:'Cormorant Garamond',serif;font-size:1.12rem;font-weight:700;color:var(--cream)}
+.footer-sub{font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,.28)}
+.flinks{display:flex;gap:2rem;list-style:none}
+.flinks a{font-size:.7rem;letter-spacing:.04em;color:rgba(245,240,232,.6);text-decoration:none;transition:color .2s}
+.flinks a:hover{color:var(--cream)}
+.fcopy{font-size:.64rem;color:rgba(245,240,232,.5)}
+
+
+/* ── POLÍTICA ── */
+.politica{max-width:780px;margin:0 auto;padding:9rem 6% 6rem;color:var(--text-mid);font-size:.95rem;line-height:1.82}
+.pol-meta{font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.06em;color:var(--gold);padding-bottom:1rem;border-bottom:1px solid var(--green-pale);margin-bottom:2rem}
+.politica h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.4rem);font-weight:300;line-height:1.12;color:var(--green-deep);margin-bottom:2.5rem}
+.politica h2{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--green-deep);margin:2.8rem 0 .8rem}
+.politica h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;color:var(--green-mid);margin:1.8rem 0 .5rem}
+.politica p{margin-bottom:1rem}
+.politica ul{margin:0 0 1rem 1.3rem}
+.politica li{margin-bottom:.45rem}
+.politica strong{font-weight:500;color:var(--text-dark)}
+.politica a{color:var(--green-mid)}
+.pol-aviso{background:var(--green-mist);border:1px solid var(--green-pale);border-left:3px solid var(--gold);padding:1.2rem 1.4rem;border-radius:2px}
+@media(max-width:960px){.nav-links{display:none}}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-logo-wrap">
+    <img src="/logo.png.png" alt="Vita'é Plena" style="height:42px;width:auto">
+    <div class="nav-brand">
+      <span class="nav-brand-name">VITA'É PLENA</span>
+      <span class="nav-brand-sub">Human Regulation Lab</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="/#que-es">Qué es</a></li>
+    <li><a href="/#ecosistema">Servicios</a></li>
+    <li><a href="/#spa">Protocolo SPA</a></li>
+    <li><a href="/#vrs">VRS Score</a></li>
+    <li><a href="/#historia">Nuestra historia</a></li>
+    <li><a href="/#contacto" class="nav-cta">Evaluación VRS</a></li>
+  </ul>
+</nav>
+
+<main class="politica">
+<p class="pol-meta">Versión 1.0 · Noviembre de 2026 · Vitae Plena S.A.S. · Human Regulation Lab</p>
+<h1>Política de tratamiento de datos personales</h1>
+<h2>1. Responsable del tratamiento</h2>
+<ul>
+  <li><strong>Razón social:</strong> Vitae Plena S.A.S.</li>
+  <li><strong>NIT:</strong> 902.087.040-0</li>
+  <li><strong>Domicilio y dirección:</strong> Calle 75 Sur # 43A-202, Local 104, Sabaneta, Antioquia, Colombia.</li>
+  <li><strong>Correo para protección de datos:</strong> <a href="mailto:privacidad@vitaeplena.com">privacidad@vitaeplena.com</a></li>
+  <li><strong>Teléfono y WhatsApp:</strong> <a href="https://wa.me/573007037467" target="_blank" rel="noopener">+57 300 703 7467</a></li>
+  <li><strong>Sitio web:</strong> www.vitaeplena.com</li>
+  <li><strong>Cargo que atiende las solicitudes:</strong> Responsable de Protección de Datos Personales.</li>
+</ul>
+<p>Vitae Plena S.A.S. es responsable del tratamiento de los datos que se gestionan en la plataforma CORTEX y en sus canales de atención. Cuando un profesional de la salud presta el servicio en su propio nombre, también es responsable de la historia clínica de esa atención, en lo que legalmente le corresponda. El titular puede ejercer sus derechos ante cualquiera de los dos por los canales de la sección 13.</p>
+<h2>2. Marco normativo y alcance</h2>
+<p>Esta política se adopta en cumplimiento de la Ley Estatutaria 1581 de 2012, el Decreto 1377 de 2013 (compilado en el Decreto 1074 de 2015) y las normas que los modifiquen. Para la historia clínica aplican además la Ley 23 de 1981, la Resolución 1995 de 1999, la Resolución 839 de 2017 y la Ley 2015 de 2020 sobre historia clínica electrónica interoperable.</p>
+<p>Aplica a los datos personales que Vitae Plena trata en cualquier medio: en su sede, en su sitio web, en la plataforma CORTEX y en sus canales de atención. Rige para sus empleados, contratistas, profesionales vinculados y proveedores que accedan a esos datos. No cubre los datos de otras instituciones que usen CORTEX, que se rigen por sus propias políticas y contratos.</p>
+<h2>3. Definiciones</h2>
+<ul>
+  <li><strong>Titular:</strong> la persona a quien se refieren los datos.</li>
+  <li><strong>Dato sensible:</strong> el que afecta la intimidad del titular o puede generar discriminación, como los datos de salud, de salud mental y biométricos.</li>
+  <li><strong>Responsable:</strong> quien decide sobre la base de datos y su tratamiento.</li>
+  <li><strong>Encargado:</strong> quien trata datos por cuenta del responsable, como un proveedor de servidores o de software.</li>
+  <li><strong>Transmisión:</strong> la comunicación de datos a un encargado, dentro o fuera de Colombia, para que los trate por cuenta del responsable.</li>
+  <li><strong>Transferencia:</strong> el envío de datos a otro responsable, dentro o fuera de Colombia.</li>
+  <li><strong>Seudonimización:</strong> retirar o reemplazar los identificadores directos, como el nombre o el documento, para que la información no se asocie a la persona sin datos adicionales.</li>
+</ul>
+<h2>4. Principios</h2>
+<p>Vitae Plena aplica los principios de legalidad, finalidad, libertad, veracidad o calidad, transparencia, acceso y circulación restringida, seguridad y confidencialidad (Ley 1581 de 2012, artículo 4). Solo trata los datos necesarios para cada finalidad y no los usa para fines distintos a los informados.</p>
+<h2>5. Datos que tratamos y para qué</h2>
+<h3>5.1 Pacientes y usuarios de servicios</h3>
+<p>Datos de identificación y contacto; datos de afiliación y facturación; historia clínica, antecedentes, motivo de consulta, medicación, alergias, laboratorios, diagnósticos, tratamientos y evolución; respuestas a cuestionarios y escalas clínicas, incluidas las de salud mental; mediciones fisiológicas como la variabilidad de la frecuencia cardíaca, la presión arterial y la composición corporal, tomadas con dispositivos de la sede; documentos que el paciente aporte; y los registros de sus consentimientos.</p>
+<p>Finalidades:</p>
+<ul>
+  <li>Prestar los servicios de salud y bienestar contratados: valoración, seguimiento, prescripción y remisión.</li>
+  <li>Elaborar, custodiar y conservar la historia clínica y los reportes clínicos.</li>
+  <li>Apoyar el trabajo de los profesionales mediante la plataforma CORTEX, incluido el análisis con inteligencia artificial cuando el paciente lo autoriza (sección 7).</li>
+  <li>Avisar de inmediato al profesional que conduce la valoración cuando las respuestas del paciente indiquen un riesgo para su vida, para atenderlo ese mismo día.</li>
+  <li>Facturar, cobrar y cumplir obligaciones contables y tributarias.</li>
+  <li>Reportar la información exigida por la ley a las autoridades de salud (sección 9).</li>
+  <li>Contactar al paciente para recordatorios, seguimiento clínico y encuestas de satisfacción.</li>
+  <li>Garantizar la seguridad de la información, auditar los accesos y atender requerimientos de autoridades.</li>
+  <li>Investigación y mejora de la calidad del servicio, solo con datos anonimizados o con autorización específica del titular.</li>
+</ul>
+<h3>5.2 Visitantes del sitio web y personas que nos contactan</h3>
+<p>Nombre, correo, organización, interés y mensaje enviados por el formulario de contacto o por WhatsApp. Se usan para responder la solicitud, agendar una cita y, si la persona lo autoriza, enviarle información sobre los servicios.</p>
+<h3>5.3 Profesionales, empleados y contratistas</h3>
+<p>Datos de identificación, formación, registro profesional (RETHUS), tarjeta profesional, datos de vinculación y pago, y los registros de su actividad en CORTEX. Se usan para gestionar la relación, habilitar su acceso a CORTEX según su rol, registrar las firmas de los reportes y cumplir obligaciones laborales, tributarias y de habilitación.</p>
+<h3>5.4 Proveedores y aliados</h3>
+<p>Datos de contacto y comerciales de sus representantes, para gestionar la relación contractual.</p>
+<h2>6. Datos sensibles y datos de niños, niñas y adolescentes</h2>
+<p>Los datos de salud son sensibles. Vitae Plena solo los trata con autorización previa, expresa e informada del titular, salvo las excepciones de ley, como la urgencia médica o el cumplimiento de obligaciones legales (Ley 1581 de 2012, artículo 6). Responder preguntas sobre datos sensibles es facultativo; si la falta de una respuesta limita la atención, el profesional lo explicará. Ninguna negativa da lugar a trato discriminatorio.</p>
+<p>La valoración VRS se realiza solo a personas mayores de 18 años. Los adolescentes pueden recibir atención psicológica. Sus datos se tratan respetando su interés superior y sus derechos prevalentes (Ley 1581 de 2012, artículo 7); la autorización la otorga su representante legal, y el profesional tiene en cuenta la opinión del adolescente según su madurez.</p>
+<h2>7. Uso de inteligencia artificial en CORTEX</h2>
+<p>CORTEX analiza información clínica con servicios de inteligencia artificial para preparar partes del reporte de la valoración VRS. Este uso:</p>
+<ul>
+  <li><strong>Requiere una autorización separada del paciente,</strong> independiente de la autorización general de tratamiento de datos, que puede negarse o retirarse en cualquier momento. Hoy la valoración VRS se prepara con apoyo de inteligencia artificial, por lo que sin esa autorización no puede realizarse; el paciente puede recibir los demás servicios de Vitae Plena sin este componente.</li>
+  <li><strong>Envía solo lo necesario.</strong> Antes de cada envío, CORTEX retira el nombre y el número de documento y los reemplaza por códigos internos. Si no puede hacerlo, no envía la información. La seudonimización reduce el riesgo, pero no garantiza un anonimato irreversible.</li>
+  <li><strong>Siempre pasa por un profesional.</strong> Ninguna decisión diagnóstica, terapéutica o de remisión se toma de forma automática. El profesional revisa, corrige y firma el reporte.</li>
+  <li><strong>Usa proveedores en el exterior:</strong> Anthropic, Google y OpenAI, que procesan la información en Estados Unidos (sección 8).</li>
+</ul>
+<h2>8. Encargados, transmisiones y transferencias</h2>
+<p>Vitae Plena se apoya en los siguientes encargados. Con cada uno suscribe o acepta un contrato de transmisión con obligaciones de confidencialidad, seguridad, uso exclusivo según las instrucciones de Vitae Plena, aviso de incidentes y devolución o eliminación de los datos al terminar (Decreto 1377 de 2013, artículo 25).</p>
+<ul>
+  <li><strong>Servidor de la plataforma CORTEX:</strong> Conexcol.</li>
+  <li><strong>Copia de seguridad:</strong> se hace cada noche, cifrada, y se guarda en un equipo de la sede de Vitae Plena en Sabaneta. No interviene un tercero.</li>
+  <li><strong>Análisis con inteligencia artificial:</strong> Anthropic, Google y OpenAI (Estados Unidos), solo con la autorización del paciente.</li>
+  <li><strong>Sitio web y formulario de contacto:</strong> Vercel (alojamiento del sitio) y Formspree (recepción del formulario), con operaciones en Estados Unidos.</li>
+</ul>
+<p>Los envíos a Estados Unidos se hacen a un país que la Superintendencia de Industria y Comercio reconoce con nivel adecuado de protección de datos, bajo contrato de transmisión. Para los datos de salud que se analizan con inteligencia artificial, Vitae Plena pide además la autorización expresa del paciente.</p>
+<h2>9. Entregas por obligación legal</h2>
+<p>Sin necesidad de autorización adicional, Vitae Plena entrega datos cuando la ley lo ordena, entre otros:</p>
+<ul>
+  <li>Al Ministerio de Salud y Protección Social: los Registros Individuales de Prestación de Servicios (RIPS) y el Resumen Digital de Atención en Salud, a través de la Interoperabilidad de la Historia Clínica Electrónica.</li>
+  <li>A la EPS o aseguradora del paciente, cuando el servicio se facture a ella.</li>
+  <li>A las autoridades judiciales y administrativas que lo soliciten en ejercicio de sus funciones.</li>
+  <li>A la Superintendencia de Industria y Comercio y a la Superintendencia Nacional de Salud, cuando corresponda.</li>
+</ul>
+<h2>10. Historia clínica</h2>
+<p>La historia clínica es reservada. Solo pueden acceder a ella el paciente, el equipo de salud que lo atiende, las autoridades en los casos previstos por la ley y las demás personas autorizadas por el paciente o por la ley. Cada acceso y modificación en CORTEX queda registrado, y los reportes firmados no pueden modificarse desde la plataforma; una corrección crea una versión nueva.</p>
+<p>La historia clínica se conserva como mínimo quince (15) años contados desde la última atención (Resolución 839 de 2017), salvo plazos especiales. Por esa obligación, la supresión de datos de la historia clínica no procede durante ese plazo, aunque el titular la solicite; sí procede la rectificación de datos inexactos y la revocatoria de autorizaciones para finalidades no obligatorias.</p>
+<h2>11. Medidas de seguridad</h2>
+<p>Vitae Plena aplica, entre otras, estas medidas: acceso con usuario y contraseña personales según el rol de cada persona, con bloqueo ante intentos fallidos; conexiones cifradas; registro de accesos y cambios; huella criptográfica de cada reporte firmado, que permite detectar cualquier alteración posterior; copias de seguridad cifradas; seudonimización antes de usar inteligencia artificial; y obligaciones de confidencialidad para empleados, contratistas y proveedores.</p>
+<h2>12. Derechos del titular</h2>
+<p>El titular de los datos puede (Ley 1581 de 2012, artículo 8):</p>
+<ul>
+  <li>Conocer, actualizar y rectificar sus datos.</li>
+  <li>Solicitar prueba de la autorización otorgada.</li>
+  <li>Ser informado del uso que se ha dado a sus datos.</li>
+  <li>Presentar quejas ante la Superintendencia de Industria y Comercio, después de agotar el trámite ante Vitae Plena.</li>
+  <li>Revocar la autorización y solicitar la supresión de los datos, cuando no exista un deber legal o contractual de conservarlos.</li>
+  <li>Acceder gratuitamente a sus datos.</li>
+</ul>
+<p>Pueden ejercer estos derechos el titular, sus causahabientes, su representante o apoderado, y quien estipule a favor de otro.</p>
+<h2>13. Cómo presentar consultas y reclamos</h2>
+<p>Canales: el correo <a href="mailto:privacidad@vitaeplena.com">privacidad@vitaeplena.com</a>, el teléfono y WhatsApp <a href="https://wa.me/573007037467" target="_blank" rel="noopener">+57 300 703 7467</a> y la dirección de la sección 1. La solicitud debe incluir el nombre y el documento del titular, la descripción de lo que pide, la dirección o el correo para responder y, si actúa un tercero, el documento que lo acredita.</p>
+<ul>
+  <li><strong>Consultas:</strong> se responden en máximo diez (10) días hábiles desde su recibo. Si no es posible, se informa el motivo y se responde en máximo cinco (5) días hábiles más (Ley 1581 de 2012, artículo 14).</li>
+  <li><strong>Reclamos</strong> (corrección, actualización, supresión o incumplimiento): se responden en máximo quince (15) días hábiles desde el día siguiente a su recibo, prorrogables hasta ocho (8) días hábiles más informando el motivo. Si el reclamo está incompleto, se pide completarlo dentro de los cinco (5) días siguientes; si pasan dos (2) meses sin respuesta del interesado, se entiende que desistió. Mientras se tramita, el dato se marca como "reclamo en trámite" (Ley 1581 de 2012, artículo 15).</li>
+</ul>
+<h2>14. Aviso para el formulario del sitio web</h2>
+<p>El formulario de contacto del sitio incluye una casilla de autorización y un enlace a esta política, con el siguiente texto:</p>
+<p class="pol-aviso">☐ Autorizo a Vitae Plena S.A.S. a tratar mis datos para responder mi solicitud y, si lo marco, para enviarme información de sus servicios, según su Política de tratamiento de datos (vitaeplena.com/privacidad). Puedo conocer, corregir o pedir la supresión de mis datos escribiendo a <a href="mailto:privacidad@vitaeplena.com">privacidad@vitaeplena.com</a>.</p>
+<h2>15. Vigencia</h2>
+<p>Esta política rige desde su publicación en vitaeplena.com/privacidad. Las bases de datos se conservan mientras dure la relación con el titular y por los plazos legales aplicables, en particular quince (15) años como mínimo para la historia clínica y diez (10) años para los documentos contables. Cualquier cambio sustancial se publicará en el sitio web y se comunicará a los titulares antes de aplicarse.</p>
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <img src="/logo.png.png" alt="Vita'é Plena" style="height:36px;width:auto;opacity:.85">
+    <div>
+      <div class="footer-name">VITA'É PLENA</div>
+      <div class="footer-sub">Human Regulation Lab · Sabaneta</div>
+    </div>
+  </div>
+  <ul class="flinks">
+    <li><a href="/#que-es">Qué es</a></li>
+    <li><a href="/#ecosistema">Servicios</a></li>
+    <li><a href="/#spa">Protocolo SPA</a></li>
+    <li><a href="/#vrs">VRS Score</a></li>
+    <li><a href="/#historia">Historia</a></li>
+    <li><a href="/#contacto">Contacto</a></li>
+    <li><a href="/privacidad">Política de tratamiento de datos</a></li>
+  </ul>
+  <span class="fcopy">© 2026 Vitae Plena S.A.S. · Todos los derechos reservados</span>
+  <span class="fcopy" style="flex-basis:100%">VITAE PLENA S.A.S. · NIT 902.087.040-0 · Calle 75 Sur # 43A-202, Local 104, Sabaneta, Antioquia, Colombia · admin@vitaeplena.com</span>
+</footer>
+
+<script>
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
+</script>
+</body>
+</html>
